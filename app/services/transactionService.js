@@ -71,7 +71,7 @@ async function doDeposits(account, transaction){
 
   const options = {
     method: 'POST',
-    uri: 'http://api.reimaginebanking.com/accounts/' + account + '/transfers/?key=' + '9b38bc6f9e4a9d118bd55081f6ee4425',
+    uri: 'http://api.reimaginebanking.com/accounts/' + account.toString() + '/transfers/?key=' + '9b38bc6f9e4a9d118bd55081f6ee4425',
     body : {
     	"medium": "balance",
   		"payee_id": transaction.to.toString(),
@@ -87,10 +87,23 @@ async function doDeposits(account, transaction){
 }
 
 
+async function get(req, res, con)
+{
+	con.query('SELECT * FROM transaction', async (err, transactionRows) => {
+		if(err) throw err;
+		var result = {"transactions" : transactionRows};
+		res.send(result, 200);
+	});
+
+
+}
+
+
 
 
 
 module.exports =  {
   "add" : add,
-  "complete" : complete
+  "complete" : complete,
+  "get" : get
 };

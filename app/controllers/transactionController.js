@@ -15,7 +15,14 @@ async function completeTransactions(req, res, connection){
 
 }
 
+async function getTransactions(req, res, connection){
+
+  return await transaction.get(req, res, connection);
+
+}
+
 module.exports =  {
   addTransaction : addTransaction,
-  completeTransactions : completeTransactions
+  completeTransactions : completeTransactions,
+  getTransactions : getTransactions
 };

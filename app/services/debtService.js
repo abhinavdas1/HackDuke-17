@@ -34,7 +34,7 @@ function calculate(req, res, con)
 
     for(var i = 0; i < transactionRows.length; i++)
     {
-      graph[userIndex[transactionRows[i].idfrom.toString()]][userIndex[transactionRows[i].idto.toString()]] += transactionRows[i].amount;
+      graph[userIndex[transactionRows[i].idfrom.toString()]][userIndex[transactionRows[i].idto.toString()]] = transactionRows[i].amount;
     }
 
     

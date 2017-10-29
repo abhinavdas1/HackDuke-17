@@ -1,5 +1,5 @@
 import {getUsers} from './controllers/userController.js';
-import {addTransaction, completeTransactions} from './controllers/transactionController.js';
+import {addTransaction, completeTransactions, getTransactions} from './controllers/transactionController.js';
 import {calculateDebts} from './controllers/debtController.js';
 var bodyParser = require('body-parser');
 
@@ -12,6 +12,10 @@ module.exports = function(app, connection) {
 
   app.get('/api/v1/getSimplifiedDebts', function(req, res){
     calculateDebts(req, res, connection);
+  });
+
+  app.get('/api/v1/getTransactions', function(req, res){
+    getTransactions(req, res, connection);
   });
 
 
