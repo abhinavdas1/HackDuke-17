@@ -26,7 +26,16 @@
                     }
                 }),
 
-                Users: $resource('/api/v1/getAllUsers')
+                Users: $resource('/api/v1/getAllUsers'),
+
+                Transaction: $resource('/api/v1/addtransaction',{},{
+                    getAll: {
+                        url: '/api/v1/getTransactions',
+                        method: 'GET'
+                    }
+                }),
+
+                SimplifyDebts: $resource('/api/v1/getSimplifiedDebts')
             };
         }])
 })();

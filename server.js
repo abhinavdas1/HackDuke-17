@@ -19,7 +19,7 @@ app.set('jwtTokenSecret', 'YOUR_SECRET_STRING');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "columbas",
+  password: "aditya",
   database : "sys"
 });
 

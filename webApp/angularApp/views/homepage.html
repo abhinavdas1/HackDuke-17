@@ -14,7 +14,6 @@
                                         <tr>
                                             <th><span>User</span></th>
                                             <th><span>Created</span></th>
-                                            <th class="text-center"><span>Status</span></th>
                                             <th><span>Email</span></th>
                                             <th>&nbsp;</th>
                                         </tr>
@@ -27,9 +26,6 @@
                                                 <span class="user-subhead">Member</span>
                                             </td>
                                             <td>2013/08/12</td>
-                                            <td class="text-center">
-                                                <span class="label label-default">pending</span>
-                                            </td>
                                             <td>
                                                 <a href="#">marlon@brando.com</a>
                                             </td>
@@ -62,35 +58,64 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-                <br>
-                <div ng-if="UsersListCtrl.usersList && UsersListCtrl.addTransactionFlag" class="col-lg-3"></div>
-                <div ng-if="UsersListCtrl.usersList && UsersListCtrl.addTransactionFlag" class="input-group input-group-lg">
-                    <span class="input-group-btn">
-                        <button ng-click="UsersListCtrl.toggleAddTransaction()" type="button" class="btn btn-primary">Add Transaction</button>
-                    </span>
+            <div ng-if="UsersListCtrl.usersList && UsersListCtrl.transactions" class="row">
+                <div class="col-lg-3">
                 </div>
-                <div ng-if="UsersListCtrl.usersList && !UsersListCtrl.addTransactionFlag" class="input-group input-group-lg">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown">
-                            {{UsersListCtrl.borrower.first_name}} {{UsersListCtrl.borrower.last_name}}
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu pull-right">
-                            <li ng-click="UsersListCtrl.selectBorrower(user)" ng-repeat="user in UsersListCtrl.dropDownList"><a href="#">{{user.first_name}} {{user.last_name}}</a></li>
-                        </ul>
-                    </span>
-                    <span>Owes</span>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown">{{UsersListCtrl.borrowee.first_name}} {{UsersListCtrl.borrowee.last_name}} <span class="caret"></span></button>
-                        <ul class="dropdown-menu pull-right">
-                            <li ng-click="UsersListCtrl.selectBorrowee(user)" ng-repeat="user in UsersListCtrl.dropDownList"><a href="#">{{user.first_name}} {{user.last_name}}</a></li>
-                        </ul>
-                    </span>
-                    <input type="text" name="query" class="form-control" placeholder="Amount">
-                    <button class="btn btn-primary custom" type="submit"><span class="fa fa-dollar"></span></button>
+                <div class="col-lg-6">
+                    <ul class="list-group">
+                        <li ng-repeat="transaction in UsersListCtrl.transactions" class="list-group-item">
+                            {{UsersListCtrl.mapping[transaction.idfrom.toString()]}} owes ${{transaction.amount}} to {{UsersListCtrl.mapping[transaction.idto.toString()]}}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <br>
+                    <div ng-if="UsersListCtrl.usersList && UsersListCtrl.addTransactionFlag" class="col-lg-3"></div>
+                    <div ng-if="UsersListCtrl.usersList && UsersListCtrl.addTransactionFlag" class="input-group input-group-lg">
+                        <span class="input-group-btn">
+                            <button ng-click="UsersListCtrl.toggleAddTransaction()" type="button" class="btn btn-primary">Add Transaction</button>
+                        </span>
+                    </div>
+                    <div ng-if="UsersListCtrl.usersList && !UsersListCtrl.addTransactionFlag" class="input-group input-group-lg">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown">
+                                {{UsersListCtrl.borrower.first_name}} {{UsersListCtrl.borrower.last_name}}
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu pull-right">
+                                <li ng-click="UsersListCtrl.selectBorrower(user)" ng-repeat="user in UsersListCtrl.dropDownList"><a href="#">{{user.first_name}} {{user.last_name}}</a></li>
+                            </ul>
+                        </span>
+                        <h5> <span class="label label-default">Owes</span></h5>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown">{{UsersListCtrl.borrowee.first_name}} {{UsersListCtrl.borrowee.last_name}} <span class="caret"></span></button>
+                            <ul class="dropdown-menu pull-right">
+                                <li ng-click="UsersListCtrl.selectBorrowee(user)" ng-repeat="user in UsersListCtrl.dropDownList"><a href="#">{{user.first_name}} {{user.last_name}}</a></li>
+                            </ul>
+                        </span>
+                        <input ng-model="UsersListCtrl.amount" type="number" name="query" class="form-control" placeholder="Amount">
+                        <button ng-click="UsersListCtrl.commitTransaction()" class="btn btn-primary custom" type="submit"><span>Commit</span></button>
+
+                    </div>
                 </div>
             </div>
+
+            <div class="row">
+                <br>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <div ng-if="UsersListCtrl.usersList" class="col-lg-3"></div>
+                    <div ng-if="UsersListCtrl.usersList" class="input-group input-group-lg">
+                        <span class="input-group-btn">
+                            <button ng-click="UsersListCtrl.simplifyDebts()" type="button" class="btn btn-primary">Simplify Debts</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

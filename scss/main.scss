@@ -557,13 +557,24 @@ md-progress-linear{
   }
 }
 
-.homepage-img .custom{
-  -webkit-border-radius: 6px !important;
-  -moz-border-radius: 6px !important;
-  border-radius: 6px !important;
+.homepage-img{
+  .custom{
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    border-radius: 6px !important;
+  }
+
+  .input-group-btn {
+    padding-right: 30px;
+  }
+
+  .form-control{
+    width:50% !important;
+  }
+
+  span.label-default{
+    margin-right: 18px;
+  }
 }
 
-.homepage-img .input-group-btn {
-  padding-right: 30px;
-}
 
