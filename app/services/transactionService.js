@@ -6,7 +6,7 @@ function add(req, res, con)
   con.query('Insert into transaction VALUES (\'' + req.from + '\',\'' + req.to  + '\',' + req.amount + ')', async (err,rows) => {
   if(err) throw err;
 
-  res.send("Transaction has been recorded", 201);
+  res.send({"response" : "Transaction has been recorded"}, 201);
 
   console.log("inserted");
 }).catch(err)
@@ -42,7 +42,10 @@ async function complete(req, res, con)
 
   	console.log(accountNumber);
 
-	});
+	}).catch(err)
+	{
+		console.log(err);
+	};
   	
 	
 }
@@ -64,18 +67,17 @@ async function getBalance(userId){
 
 async function doDeposits(account, transaction){
 
+	console.log(transaction);
+
   const options = {
     method: 'POST',
-    uri: 'http://api.reimaginebanking.com/accounts/' + account + '/transfers',
+    uri: 'http://api.reimaginebanking.com/accounts/' + account + '/transfers/?key=' + '9b38bc6f9e4a9d118bd55081f6ee4425',
     body : {
     	"medium": "balance",
   		"payee_id": transaction.to.toString(),
-  		"amount": transaction.amount,
+  		"amount": parseInt(transaction.amount),
   		"transaction_date": "2017-10-29",
   		"description": "Sample"
-    },
-    qs:{
-      'key' : "9b38bc6f9e4a9d118bd55081f6ee4425"
     },
     json: true
   }
