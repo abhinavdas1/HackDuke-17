@@ -24,7 +24,9 @@
                         method:'GET',
                         url: '/me/reviews'
                     }
-                })
+                }),
+
+                Users: $resource('/api/v1/getAllUsers')
             };
         }])
 })();

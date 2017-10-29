@@ -8,7 +8,7 @@
 
     function headerCtrl($state, $signInModal, $currentUser, $progressBarFlag){
         var vm = this;
-        vm.appName = "Hangout";
+        vm.appName = "Splitwise";
         vm.state  = $state;
         vm.disable = $progressBarFlag.get();
         vm.disable.flag = false;

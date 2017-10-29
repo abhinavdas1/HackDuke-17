@@ -19,7 +19,8 @@
         'ngAnimate',
         'toastr',
         'progressBarFlag.service',
-        'constants.service'
+        'constants.service',
+        'angularSpinner'
     ]);
 
 

@@ -1,7 +1,96 @@
 <div class="container-fluid">
     <div class="row">
         <div class="homepage-img">
-            <div search-bar class="homepage-search col-md-6 col-md-offset-4"></div>
+
+            <div class="container bootstrap snippet">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span ng-if="!UsersListCtrl.usersList" us-spinner></span>
+                        <div class="main-box no-header clearfix">
+                            <div class="main-box-body clearfix">
+                                <div class="table-responsive">
+                                    <table class="table user-list">
+                                        <thead>
+                                        <tr>
+                                            <th><span>User</span></th>
+                                            <th><span>Created</span></th>
+                                            <th class="text-center"><span>Status</span></th>
+                                            <th><span>Email</span></th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="user in UsersListCtrl.usersList">
+                                            <td>
+                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
+                                                <a href="#" class="user-link">{{user.first_name}} {{user.last_name}}</a>
+                                                <span class="user-subhead">Member</span>
+                                            </td>
+                                            <td>2013/08/12</td>
+                                            <td class="text-center">
+                                                <span class="label label-default">pending</span>
+                                            </td>
+                                            <td>
+                                                <a href="#">marlon@brando.com</a>
+                                            </td>
+                                            <td style="width: 20%;">
+                                                <a href="#" class="table-link">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                                </a>
+                                                <a href="#" class="table-link">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                                </a>
+                                                <a href="#" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <br>
+                <div ng-if="UsersListCtrl.usersList && UsersListCtrl.addTransactionFlag" class="col-lg-3"></div>
+                <div ng-if="UsersListCtrl.usersList && UsersListCtrl.addTransactionFlag" class="input-group input-group-lg">
+                    <span class="input-group-btn">
+                        <button ng-click="UsersListCtrl.toggleAddTransaction()" type="button" class="btn btn-primary">Add Transaction</button>
+                    </span>
+                </div>
+                <div ng-if="UsersListCtrl.usersList && !UsersListCtrl.addTransactionFlag" class="input-group input-group-lg">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown">
+                            {{UsersListCtrl.borrower.first_name}} {{UsersListCtrl.borrower.last_name}}
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu pull-right">
+                            <li ng-click="UsersListCtrl.selectBorrower(user)" ng-repeat="user in UsersListCtrl.dropDownList"><a href="#">{{user.first_name}} {{user.last_name}}</a></li>
+                        </ul>
+                    </span>
+                    <span>Owes</span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown">{{UsersListCtrl.borrowee.first_name}} {{UsersListCtrl.borrowee.last_name}} <span class="caret"></span></button>
+                        <ul class="dropdown-menu pull-right">
+                            <li ng-click="UsersListCtrl.selectBorrowee(user)" ng-repeat="user in UsersListCtrl.dropDownList"><a href="#">{{user.first_name}} {{user.last_name}}</a></li>
+                        </ul>
+                    </span>
+                    <input type="text" name="query" class="form-control" placeholder="Amount">
+                    <button class="btn btn-primary custom" type="submit"><span class="fa fa-dollar"></span></button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
