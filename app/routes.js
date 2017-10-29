@@ -1,5 +1,5 @@
 import {getUsers} from './controllers/userController.js';
-import {addTransaction} from './controllers/transactionController.js';
+import {addTransaction, completeTransactions} from './controllers/transactionController.js';
 import {calculateDebts} from './controllers/debtController.js';
 var bodyParser = require('body-parser');
 
@@ -15,9 +15,15 @@ module.exports = function(app, connection) {
   });
 
 
-  app.post('/api/v1/addtransaction', function(req, res){
+  app.post('/api/v1/addTransaction', function(req, res){
     var body = req.body;
     var rows = addTransaction(body, res, connection);
+    
+  });
+
+  app.post('/api/v1/completeTransactions', function(req, res){
+    var body = req.body;
+    var rows = completeTransactions(body, res, connection);
     
   });
 };
