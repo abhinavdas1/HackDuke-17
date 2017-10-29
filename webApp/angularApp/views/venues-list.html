@@ -1,0 +1,142 @@
+<div class="container-fluid" id="venues-list">
+    <div class="row venues-list-data">
+        <div class="col-md-4">
+            <div id="filter" >
+                <md-card>
+                    <md-card-content>
+                        <md-content layout = "column">
+                            <div flex="20">
+                                <div layout="row">
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>City</label>
+                                            <input ng-disabled="VenuesListCtrl.sendLocation" ng-model="VenuesListCtrl.filter.city" type="text">
+                                        </md-input-container>
+                                    </div>
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>State</label>
+                                            <md-select ng-model="VenuesListCtrl.filter.state">
+                                                <md-optgroup>
+                                                    <md-option ng-disabled="VenuesListCtrl.sendLocation" ng-value="state" ng-repeat="state in VenuesListCtrl.usStates">
+                                                        {{ state }}
+                                                    </md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div flex="20">
+                                <div layout="row" layout-align="center center">
+                                    <div flex>
+                                        <md-checkbox ng-model="VenuesListCtrl.sendLocation" ng-change="VenuesListCtrl.getLocation()" aria-label="Checkbox 1">
+                                            Within my Range
+                                        </md-checkbox>
+                                    </div>
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>Radius</label>
+                                            <md-select ng-model="VenuesListCtrl.selectedRadius">
+                                                <md-optgroup>
+                                                    <md-option ng-value="radius.value" ng-repeat="radius in VenuesListCtrl.radiusOptions">
+                                                        {{ radius.option }}
+                                                    </md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div flex="20">
+                                <div layout="row" layout-align="center center">
+                                    <div flex>
+                                        <md-checkbox ng-model="VenuesListCtrl.filter.sort" aria-label="Checkbox 1">
+                                            Sort by Ratings
+                                        </md-checkbox>
+                                    </div>
+                                    <div flex>
+                                        <md-input-container>
+                                            <label>Rating</label>
+                                            <md-select ng-model="VenuesListCtrl.filter.rating">
+                                                <md-optgroup>
+                                                    <md-option ng-value="rating.value" ng-repeat="rating in VenuesListCtrl.ratingsOptions">
+                                                        {{ rating.option }}
+                                                    </md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        </md-content>
+
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end end">
+                        <md-button ng-click="VenuesListCtrl.resetFilter()" class="green-txt-btn">Reset</md-button>
+                        <md-button ng-click="VenuesListCtrl.applyFilter()" class="outline-btn-green md-button md-ink-ripple">Filter</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel map" ng-if="VenuesListCtrl.venues.venues">
+                <nvd3 options='VenuesListCtrl.graphOptions' data='VenuesListCtrl.graphData'></nvd3>
+            </div>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Search results for : {{VenuesListCtrl.searchResultsFor}}</div>
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li>
+                            <a ng-class="{inactiveLink : VenuesListCtrl.prevPageDisabled}" ng-click="VenuesListCtrl.prevPage()">
+                                Previous
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-class="{inactiveLink : VenuesListCtrl.nextPageDisabled}" ng-click="VenuesListCtrl.nextPage()">
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="panel-body scrollable-list" >
+                    <md-content ng-if = "VenuesListCtrl.venues.venues">
+                        <md-card ui-sref="getVenue({id: venue.VENUE_ID})" ng-repeat = "venue in VenuesListCtrl.venues.venues">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{ venue.VENUE_NAME }}</span>
+                                    <span class="md-subhead">{{ venue.CITY }}, {{ venue.STATE }}</span>
+                                    <span class="md-subhead">Phone: {{ venue.PHONE }}</span>
+                                    <span class="md-subhead">Rating: {{ venue.RATING }}</span>
+                                </md-card-title-text>
+                                <md-card-title-media>
+                                    <div class="md-media-lg card-media">
+                                        <img ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                    </div>
+                                </md-card-title-media>
+                            </md-card-title>
+                        </md-card>
+                    </md-content>
+                </div>
+                <div class="panel-footer">
+                    <nav aria-label="...">
+                        <ul class="pager">
+                            <li>
+                                <a ng-class="{inactiveLink : VenuesListCtrl.prevPageDisabled}" ng-click="VenuesListCtrl.prevPage()">
+                                    Previous
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-class="{inactiveLink : VenuesListCtrl.nextPageDisabled}" ng-click="VenuesListCtrl.nextPage()">
+                                    Next
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

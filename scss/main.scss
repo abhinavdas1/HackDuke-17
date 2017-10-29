@@ -1,0 +1,486 @@
+$badass: #bada55;
+$font-stack : Helvetica;
+h1 {
+  color: navy;
+  margin-left: 20px;
+}
+
+body {
+  height: initial !important;
+  position: relative;
+}
+
+.custom-navbar{
+  margin-bottom: 0 !important;
+  background-color: #3b1d8f !important;
+  a{
+    color: white !important;
+  }
+}
+.homepage-img{
+  position: relative;
+  height: 100vh;
+  z-index: 1;
+}
+.homepage-img:before{
+  background-image: url('../images/map.png');
+  background-size: cover;
+  opacity: 0.5;
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.md-button.md-primary.md-raised.green{
+  background-color: #5cb85c !important;
+}
+.md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-raised{
+  background-color: #4c9a4c !important;
+}
+
+.homepage-search{
+  position: absolute;
+  top: 40%;
+  .navbar-form{
+    width: 100%
+  }
+  .form-group{
+    width: 60%;
+    input {
+      width: 100%;
+      height: 50px !important;
+      font-size: large;
+    }
+  }
+  .md-button.md-raised{
+    height: 43px !important;
+    min-width: 68px !important;
+  }
+  span.glyphicon-search{
+    margin-top: 15px !important;
+  }
+
+}
+nav.header{
+
+  border-color: #e7e7e7;
+  border-bottom: 0.28571em solid #717173;
+  height: 70px;
+  position: fixed;
+  width: 100%;
+  z-index: 8;
+  top: 0;
+  left: 0;
+  .header-search{
+    .green{
+      margin: 0 0 0 0;
+      min-width: 1%;
+    }
+
+    input.form-control{
+      width: 101%;
+      border-radius: 2px 0px 0 2px;
+      height: 36px;
+    }
+
+    .md-button{
+      border-radius: 0px 2px 2px 0px;
+    }
+    .form-group{
+      min-width: 25em;
+    }
+  }
+
+  .user-handle{
+    //display: none;
+  }
+  li.dropdown.open{
+    a{
+      color: #1d2129 !important;
+    }
+    a.dropdown-toggle{
+      color: white !important;
+      .carat{
+        color: black !important;
+      }
+    }
+  }
+
+  a.navbar-brand{
+    font-size: x-large;
+  }
+  .header-container{
+    margin-top: 7px;
+  }
+}
+
+#sign-up, #sign-in {
+  #sign-up {
+    md-toolbar:not(.md-menu-toolbar) {
+      background-color: #3b1d8f !important;
+    }
+    md-input-container {
+      margin: 10px 0 !important;
+    }
+    .md-input-invalid {
+      .glyphicon {
+        color: rgb(221, 44, 0);
+      }
+    }
+  }
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+  background-color: #3b1d8f !important;
+}
+
+#venues-list{
+  //.scrollable-list{
+  //  height: 70vh;
+  //  overflow-y: scroll;
+  //}
+
+  #filter{
+    position: fixed;
+    top: 126px;
+    z-index: 1;
+    opacity: 0.99;
+    width: inherit;
+    padding: 0 13px;
+    height: 35em;
+    md-card, md-content{
+      height: 100%;
+    }
+    md-content{
+      padding-left: 20px;
+    }
+    md-card-content{
+      height: 90%;
+    }
+    .filter-categories-cntr{
+      width:90%;
+    }
+    md-input-container{
+      width: 80%;
+    }
+    md-card-actions{
+      button{
+        background-color: lightgray;
+      }
+    }
+    md-checkbox{
+      margin-bottom: 0;
+    }
+  }
+
+  .filter-btn{
+    background: #EAE8EB;
+    min-height: 4.42857em;
+    margin-bottom: 10px;
+    margin-top: 70px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    -webkit-transition: all 0.5s; // Chrome
+    -moz-transition: all 0.5s; // Mozilla
+    -o-transition: all 0.5s; // Opera
+    transition: all 0.5s;
+
+    div{
+      padding: 12px 20px 0 0;
+    }
+  }
+
+  .filter-btn.nav-up {
+    top: -62px; // same as header height. use variables in LESS/SASS
+  }
+  .venues-list-data{
+    margin-top: 137px;
+  }
+
+  md-card md-card-title md-card-title-media .md-media-lg{
+    width: 224px;
+  }
+  .pager{
+    a{
+      cursor: pointer;
+    }
+  }
+}
+.header-container{
+  margin-top: 8px;
+}
+
+#venue-details {
+    background-color: #efeff4;
+    margin-top: 105px;
+    .md-headline {
+        font-variant: small-caps;
+    }
+
+    .md-subhead {
+        font-style : italic !important;
+    }
+     .text {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 2px;
+        font-family: calibri;
+        font-style: italic;
+    }
+
+    .image-slider {
+       border: 1px solid lightgray;
+    }
+
+    .venue-info {
+      margin-top: 20px;
+      font-size: 18px;
+      font-family: calibri;
+
+      .panel {
+        margin-left: 15px;
+        padding: 6px;
+        background-color: white;
+        color: black;
+        background-image: url("../images/watermarked_cover.png");
+        height: 315px;
+
+        span{
+            color: white;
+            font-variant: small-caps;
+            font-size: 25px !important;
+            font-weight: bold;        }
+      }
+
+      .venue-data-container{
+        margin: 166px 27px 0 32px;
+      }
+      .venue-data{
+
+        float: left;
+      }
+      md-chips md-chip{
+        background: #5cb85c !important;
+      }
+      .like-btn{
+        margin-top: 60px;
+      }
+
+    }
+
+    .btn {
+        background-color: #5bc0de;
+        color : white;
+        text-transform: none;
+        font-size: 16px;
+        margin: 0px;
+        margin-top: 5px;
+    }
+
+    .review-count {
+        margin: 10px 2px 2px 2px;
+        padding: 5px;
+        font-variant: small-caps !important;
+        font-size: 20px !important;
+
+        .filter {
+            width: 20%;
+            margin-left: 10px;
+            display: inline;
+        }
+    }
+
+    .panel {
+        border: 1px solid lightgray;
+    }
+
+    .reviews {
+        .review-container {
+            border: 1px solid lightgray;
+            margin: 0px;
+
+            .side-container {
+                max-height: 400px;
+                md-card {
+                    box-shadow: 0px 0px 0px 0px !important;
+                    md-card-title {
+                        padding: 0px;
+                        height: 80px;
+
+                        md-card-title-media {
+                            margin: 0px !important;
+
+                            img {
+                                border-radius: 30% !important;
+                            }
+                        }
+
+                        md-card-title-text {
+                            margin-left: 10px !important;
+
+                            .md-headline {
+                                font-size: 20px !important;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
+  background-color: lightgrey;
+  color: lightgrey;
+}
+
+md-progress-linear{
+  top: 68px;
+  z-index: 2;
+  position: fixed !important;
+}
+
+#userProfile {
+    .md-headline {
+        font-variant: small-caps;
+    }
+    margin-top: 105px;
+    .userInfo {
+        margin: 0px !important;
+
+        md-card {
+            height: 150px !important;
+
+            md-card-title-text {
+                margin-left: 20px;
+
+                 .md-headline {
+                        font-variant: small-caps;
+                    }
+
+                .md-subhead {
+                    font-style: italic !important;
+                }
+            }
+        }
+    }
+    .tab-content {
+        margin-top: 20px !important;
+        .friend-checkins {
+            max-height: 400px;
+
+            md-card {
+                md-card-title {
+                    padding: 0px;
+                    height: 80px;
+
+                    md-card-title-media {
+                        margin: 0px !important;
+                    }
+
+                    md-card-title-text {
+                        margin-left: 10px !important;
+                    }
+                }
+            }
+        }
+
+        .followers {
+            ul {
+                li {
+                    display: inline-block;
+                    width: 12.33%;
+                    margin-right: 60px;
+                    margin-top: 40px;
+                    padding: 0px;
+
+                    md-card {
+                        height: 147px !important;
+                        box-shadow: 0px 0px 0px 0px !important;
+                        img {
+                            height: 80% !important;
+                            border-radius: 100%;
+                        }
+
+                        md-card-title {
+                            margin: 0px !important;
+                            padding-top: 0px;
+                            text-align: -webkit-center;
+
+                            span {
+                                font-size: 15px;
+                                font-weight: bold;
+                                font-family: calibri;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .suggestions {
+            max-height: 400px;
+
+            md-card {
+                box-shadow: 0px 0px 0px 0px !important;
+                md-card-title {
+                    padding: 0px;
+                    height: 80px;
+
+                    md-card-title-media {
+                        margin: 0px !important;
+
+                        img {
+                            border-radius: 30% !important;
+                        }
+                    }
+
+                    md-card-title-text {
+                        margin-left: 10px !important;
+
+                        .md-headline {
+                            font-size: 20px !important;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        .my-reviews {
+            max-height: 400px;
+
+            md-card {
+                md-card-title {
+                    padding: 0px;
+                    height: auto;
+
+                    md-card-title-media {
+                        margin: 0px !important;
+                    }
+
+                    md-card-title-text {
+                        margin-left: 10px !important;
+
+                        .md-headline {
+                            font-variant: small-caps;
+                        }
+
+                        .md-subhead {
+                            font-style: italic !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,106 @@
+<div class="container-fluid" id="venue-details">
+    <!--<div class="row image-slider">-->
+        <!--Image Slider-->
+        <!--<slick infinite="true" dots="true" arrows="true" data="photoStream" init-onload="true">-->
+            <!--&lt;!&ndash;<div ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">-->
+                <!--<img ng-src="../images/placeholder-{{$index%15}}.jpg">-->
+            <!--</div>&ndash;&gt;-->
+        <!--</slick>-->
+    <!--</div>-->
+    <div class="row venue-info">
+        <div class="panel" ng-if = "venueCtrl.venue">
+            <div class="venue-data-container">
+                <div class="venue-data">
+                    <span ng-if = "venueCtrl.venue.VENUE_NAME">{{ venueCtrl.venue.VENUE_NAME }}</span></br>
+                    <span ng-if = "venueCtrl.venue.PHONE">Phone: {{ venueCtrl.venue.PHONE }}</span></br>
+                    <span ng-if = "venueCtrl.venue.CITY">{{venueCtrl.venue.CITY}}</span>
+                    <span ng-if="venueCtrl.venue.CITY && venueCtrl.venue.COUNTRY">,</span>
+                    <span ng-if="venueCtrl.venue.COUNTRY">{{ venueCtrl.venue.COUNTRY}}</span>
+                    <span ng-if="venueCtrl.venue.COUNTRY && venueCtrl.venue.POSTAL_CODE">,</span>
+                    <span ng-if="venueCtrl.venue.POSTAL_CODE">{{ venueCtrl.venue.POSTAL_CODE}}</span></br>
+                    <md-chips readonly="true" ng-model="venueCtrl.categories" md-max-chips="5">
+                    </md-chips>
+                </div>
+                <div class="pull-right like-btn">
+                    <span class="pull-right" ng-if = "venueCtrl.venue">{{venueCtrl.venue.RATING}} / 10 </span></br>
+                    <md-button ng-click="venueCtrl.addToFav()" ng-if="venueCtrl.checkIfLikedAlready() && !venueCtrl.liked" align="bottom" class="btn" class="md-raised md-accent">
+                        Add to Favourites
+                    </md-button>
+                    <md-button ng-if="venueCtrl.currentUser.FNAME && !venueCtrl.checkIfLikedAlready() || venueCtrl.liked" align="bottom" class="btn" ng-click="ctrl.openModal($event,'logIn')" class="md-raised md-accent">
+                        Liked
+                    </md-button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row reviews-container">
+        <div class="col-md-9">
+            <div class="panel review-count">
+                <div class="text">
+                    <span>
+                        Total {{ venueCtrl.reviews.length }} reviews and {{ venueCtrl.venue.CHECK_IN_COUNT }} check-ins for this place.
+                    </span><br>
+
+                </div>
+                <div class="text">
+                    <span>
+                        Filter By:
+                    </span>
+                    <input type="text" name="keyword" class="form-control filter" placeholder="Keyword"
+                           ng-model="filterKeyword" required>
+                </div>
+            </div>
+            <div class="panel reviews">
+                <div>
+
+                    <md-card ng-repeat="review in venueCtrl.reviews">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{review.FNAME }} {{review.LNAME}}</span>
+                                <span class="md-subhead">Rated: {{ review.RATING }} </span>
+
+                                <span class="md-subhead">
+                                    {{review.REVIEW_TEXT}}
+                                </span>
+                            </md-card-title-text>
+                            <md-card-content>
+
+                            </md-card-content>
+                        </md-card-title>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 side-container">
+            <div class="row panel">
+                <nvd3 options='venueCtrl.chartOptions' data='venueCtrl.chartData'></nvd3>
+            </div>
+
+            <div class="row panel suggestions">
+                Places you may like:
+                <div flex-xs flex-gt-xs="100" layout="column">
+                    <md-card ng-repeat="venue in venueCtrl.suggestedVenues" ui-sref="getVenue({id:venue.VENUE_ID})">
+                        <md-card-title>
+                            <md-card-title-media>
+                                <div class="md-media-lg card-media">
+                                    <img style="height: 80px" ng-src="../images/placeholder-{{$index%15}}.jpg">
+                                </div>
+                            </md-card-title-media>
+                            <md-card-title-text>
+                                <span class="md-headline">{{venue.VENUE_NAME}}</span>
+                                <span class="md-headline">{{venue.PHONE}}</span>
+                                <span class="md-headline">{{venue.CITY}}</span>
+
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
