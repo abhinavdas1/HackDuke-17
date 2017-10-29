@@ -49,8 +49,8 @@ function calculate(req, res, con)
     {
       for(var i = 0; i < result.transaction.length; i++)
       {
-        result.transaction[i].to = indexUser[result.transaction[i].to.toString()];
-        result.transaction[i].from = indexUser[result.transaction[i].from.toString()];
+        result.transaction[i].idto = indexUser[result.transaction[i].idto.toString()];
+        result.transaction[i].idfrom = indexUser[result.transaction[i].idfrom.toString()];
       }
 
       res.send(result, 200);
@@ -119,7 +119,7 @@ function getMinimumTransactions(amount)
     amount[maximumCreditPerson] -= min;
     amount[maximumDebitPerson] += min;
 
-    var currentTransaction = { "from" :maximumCreditPerson , "to" : maximumDebitPerson, "amount" : min};
+    var currentTransaction = { "idfrom" :maximumCreditPerson , "idto" : maximumDebitPerson, "amount" : min};
 
     console.log(currentTransaction);
 
