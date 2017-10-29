@@ -40,14 +40,22 @@ function calculate(req, res, con)
     
 
     var result = minimumCashFlow(graph);
-
-    for(var i = 0; i < result.transaction.length; i++)
+    console.log("here");
+    if(typeof(result.transaction) === 'undefined')
     {
-      result.transaction[i].to = indexUser[result.transaction[i].to.toString()];
-      result.transaction[i].from = indexUser[result.transaction[i].from.toString()];
+      res.send({transaction : []});
     }
+    else
+    {
+      for(var i = 0; i < result.transaction.length; i++)
+      {
+        result.transaction[i].to = indexUser[result.transaction[i].to.toString()];
+        result.transaction[i].from = indexUser[result.transaction[i].from.toString()];
+      }
 
-    res.send(result, 200);
+      res.send(result, 200);
+    }
+    
   })
 
   
@@ -111,7 +119,7 @@ function getMinimumTransactions(amount)
     amount[maximumCreditPerson] -= min;
     amount[maximumDebitPerson] += min;
 
-    var currentTransaction = { "from" : maximumDebitPerson, "to" : maximumCreditPerson, "amount" : min};
+    var currentTransaction = { "from" :maximumCreditPerson , "to" : maximumDebitPerson, "amount" : min};
 
     console.log(currentTransaction);
 

@@ -22,7 +22,9 @@ function getAll(req, res, con)
   	
   }
 
-  res.send(users, 200);
+  var result = {"users" : users};
+
+  res.send(result, 200);
 
   console.log(users);
 }).catch(err)
